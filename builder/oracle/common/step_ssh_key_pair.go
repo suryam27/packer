@@ -1,4 +1,4 @@
-package oci
+package common
 
 import (
 	"crypto/rand"
@@ -15,13 +15,13 @@ import (
 	"golang.org/x/crypto/ssh"
 )
 
-type stepKeyPair struct {
+type StepKeyPair struct {
 	Debug          bool
 	DebugKeyPath   string
 	PrivateKeyFile string
 }
 
-func (s *stepKeyPair) Run(state multistep.StateBag) multistep.StepAction {
+func (s *StepKeyPair) Run(state multistep.StateBag) multistep.StepAction {
 	ui := state.Get("ui").(packer.Ui)
 
 	if s.PrivateKeyFile != "" {
@@ -111,6 +111,6 @@ func (s *stepKeyPair) Run(state multistep.StateBag) multistep.StepAction {
 	return multistep.ActionContinue
 }
 
-func (s *stepKeyPair) Cleanup(state multistep.StateBag) {
+func (s *StepKeyPair) Cleanup(state multistep.StateBag) {
 	// Nothing to do
 }
